@@ -10,8 +10,17 @@ import {
 } from "@chakra-ui/react";
 import Login from "../components/Login";
 import SignUp from "../components/SignUp";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("userInfo"));
+    if (user) navigate("/chats");
+  }, [navigate]);
+
   return (
     <div
       style={{

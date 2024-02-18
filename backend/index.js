@@ -27,6 +27,7 @@ const cors = require("cors");
 //Require Routes
 const userRoutes = require("./routes/userRoutes.js");
 const chatRoutes = require("./routes/chatRoutes.js");
+const messageRoutes = require("./routes/messageRoutes.js");
 
 //Start Express App
 const app = express();
@@ -44,6 +45,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/user", userRoutes);
 
 app.use("/chat", chatRoutes);
+
+app.use("/message", messageRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

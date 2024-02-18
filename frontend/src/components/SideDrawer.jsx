@@ -48,7 +48,7 @@ export default function SideDrawer() {
   const handleSearch = async () => {
     if (!search) {
       toast({
-        title: "Please Enter Something in Search",
+        title: "Search Field Empty",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -133,7 +133,7 @@ export default function SideDrawer() {
         <Tooltip label="Search Users to Chat" hasArrow placement="bottom-end">
           <Button variant="ghost" onClick={onOpen}>
             <SearchIcon />
-            <Text d={{ base: "none", md: "flex" }} px="4">
+            <Text display={{ base: "none", md: "flex" }} px="4">
               Search User
             </Text>
           </Button>

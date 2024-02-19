@@ -20,7 +20,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password,
-    img,
+    img: img || undefined,
   });
 
   if (user) {

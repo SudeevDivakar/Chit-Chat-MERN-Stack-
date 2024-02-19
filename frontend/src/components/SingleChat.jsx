@@ -16,11 +16,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./SingleChat.css";
 import ScrollableChat from "./ScrollableChat";
+import io from "socket.io-client";
+
+const ENDPOINT = "http://localhost:3000";
+let socket, selectedChatCompare;
 
 export default function SingleChat({ fetchAgain, setFetchAgain }) {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState();
+  const [socketConnected, setSocketConnected] = useState(false);
+
   const { user, selectedChat, setSelectedChat } = ChatState();
 
   const toast = useToast();
@@ -44,6 +50,8 @@ export default function SingleChat({ fetchAgain, setFetchAgain }) {
 
       setMessages(data);
       setLoading(false);
+
+      socket.emit("join chat", selectedChat._id);
     } catch (error) {
       toast({
         title: "An Error Occured",
@@ -57,8 +65,27 @@ export default function SingleChat({ fetchAgain, setFetchAgain }) {
   };
 
   useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", user);
+    socket.on("connection", () => setSocketConnected(true));
+  }, []);
+
+  useEffect(() => {
     fetchMessages();
+    selectedChatCompare = selectedChat;
   }, [selectedChat]);
+
+  useEffect(() => {
+    socket.on("message recieved", (newMessageRecieved) => {
+      if (
+        !selectedChatCompare ||
+        selectedChatCompare._id !== newMessageRecieved.chat._id
+      ) {
+      } else {
+        setMessages([...messages, newMessageRecieved]);
+      }
+    });
+  });
 
   const sendMessage = async (e) => {
     if (e.key === "Enter" && newMessage) {
@@ -80,6 +107,7 @@ export default function SingleChat({ fetchAgain, setFetchAgain }) {
           config
         );
 
+        socket.emit("new message", data);
         setMessages([...messages, data]);
       } catch (error) {
         toast({

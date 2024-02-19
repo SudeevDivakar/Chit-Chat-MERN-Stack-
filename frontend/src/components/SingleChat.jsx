@@ -17,6 +17,8 @@ import axios from "axios";
 import "./SingleChat.css";
 import ScrollableChat from "./ScrollableChat";
 import io from "socket.io-client";
+import Lottie from "lottie-react";
+import animationData from "../animations/typing.json";
 
 const ENDPOINT = "http://localhost:3000";
 let socket, selectedChatCompare;
@@ -208,7 +210,23 @@ export default function SingleChat({ fetchAgain, setFetchAgain }) {
               </div>
             )}
             <FormControl onKeyDown={sendMessage} isRequired mt={3}>
-              {isTyping ? <div>Loading...</div> : <></>}
+              {isTyping ? (
+                <div
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    float: "left",
+                  }}
+                >
+                  <Lottie
+                    animationData={animationData}
+                    autoPlay={true}
+                    loop={true}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
               <Input
                 variant="filled"
                 bg="#E0E0E0"

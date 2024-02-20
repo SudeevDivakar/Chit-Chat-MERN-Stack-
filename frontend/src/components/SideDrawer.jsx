@@ -148,7 +148,7 @@ export default function SideDrawer() {
         </Tooltip>
 
         <Text fontSize="3xl" fontWeight="bold">
-          Chat App
+          Chit Chat
         </Text>
 
         <div>

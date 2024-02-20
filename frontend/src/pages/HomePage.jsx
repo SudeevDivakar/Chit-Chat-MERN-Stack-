@@ -41,7 +41,7 @@ export default function HomePage() {
           borderRadius="lg"
           borderWidth="1px"
         >
-          <Text fontSize="3xl">Chat App</Text>
+          <Text fontSize="3xl">Chit Chat</Text>
         </Box>
         <Box
           bg="white"

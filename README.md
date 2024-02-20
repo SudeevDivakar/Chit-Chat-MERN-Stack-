@@ -24,3 +24,39 @@ Furthur images present in ./project_images
 
 Found a bug or have an enhancement in mind?
 Contribute to the project by opening issues and pull requests.
+
+## Running the project
+
+- **Cloning the repository**: To clone the repository onto your machine, run `git clone git@github.com:SudeevDivakar/Chit-Chat-MERN-Stack-.git`
+- **Change Working Directory to Chit Chat**: To change the cwd to Chit Chat, run `cd Chit-Chat-MERN-Stack-`
+- **Installing Dependencies**: To install the dependencies for both frontend and backend, run
+
+```
+cd frontend
+npm install
+cd ../backend
+npm install
+```
+
+- **Environment Variables**:
+  Create a `.env` file in the backend directory and fill it with the appropriate values:
+
+```
+PORT=3000           #Backend Port Number
+DB_URL=          #URL to the mongoDB database
+JWT_SECRET=		#Secret key for JWT (can be anything)
+```
+
+Now create a `.env` file in the frontend directory and fill it with the appropriate values:
+
+```
+VITE_UPLOAD_PRESET=
+VITE_CLOUD_NAME=
+```
+
+- **Start Up the Front and Backend servers**
+  On two different terminals (one in the frontend directory and one in the backend directory), run `npm run dev` in each directory.
+
+- Open up the react server on 'http://localhost:5173'
+
+- The code has now successfully been run :)

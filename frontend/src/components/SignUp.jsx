@@ -54,13 +54,18 @@ export default function SignUp() {
     ) {
       const data = new FormData();
       data.append("file", img);
-      data.append("upload_preset", "dwmbad1t");
-      data.append("cloud_name", "dhwuxrl7p");
+      data.append("upload_preset", `${import.meta.env.VITE_UPLOAD_PRESET}`);
+      data.append("cloud_name", `${import.meta.env.VITE_CLOUD_NAME}`);
       data.append("folder", "ChatAppMern");
-      fetch(`https://api.cloudinary.com/v1_1/dhwuxrl7p/image/upload`, {
-        method: "post",
-        body: data,
-      })
+      fetch(
+        `https://api.cloudinary.com/v1_1/${
+          import.meta.env.VITE_CLOUD_NAME
+        }/image/upload`,
+        {
+          method: "post",
+          body: data,
+        }
+      )
         .then((res) => {
           return res.json();
         })

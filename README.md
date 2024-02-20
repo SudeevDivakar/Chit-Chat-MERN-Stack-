@@ -50,8 +50,8 @@ JWT_SECRET=		#Secret key for JWT (can be anything)
 Now create a `.env` file in the frontend directory and fill it with the appropriate values:
 
 ```
-VITE_UPLOAD_PRESET=
-VITE_CLOUD_NAME=
+VITE_UPLOAD_PRESET=        #upload preset for cloudinary
+VITE_CLOUD_NAME=           #cloudinary cloud name
 ```
 
 - **Start Up the Front and Backend servers**
